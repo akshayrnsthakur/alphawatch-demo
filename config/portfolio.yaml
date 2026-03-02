@@ -1,0 +1,234 @@
+# ==============================================================================
+# AlphaWatch Demo Portfolio Configuration
+# ==============================================================================
+# This is an ANONYMIZED example portfolio for demonstration purposes.
+# Values are realistic but fictional.
+#
+# To use with your own portfolio:
+# 1. Copy this file: cp portfolio.yaml my_portfolio.yaml
+# 2. Add my_portfolio.yaml to .gitignore
+# 3. Update positions, thresholds, and theses to match your situation
+# ==============================================================================
+
+meta:
+  owner: "Demo Investor"
+  base_currency: "USD"
+  last_updated: "2026-03-01"
+  review_cycle: "monthly"
+  total_net_worth_approx_usd: 750000
+
+# ------------------------------------------------------------------------------
+# Portfolio Positions
+# liquidity: liquid | semi_liquid | illiquid
+# category: crypto | crypto_equity | public_equity | real_estate | cash | other
+# ------------------------------------------------------------------------------
+positions:
+  # CRYPTO — Liquid Core
+  - id: BTC
+    name: "Bitcoin"
+    ticker: "BTC"
+    category: crypto
+    liquidity: liquid
+    quantity: 2.5
+    cost_basis_usd: 45000        # per unit
+    notes: "Long-term store of value core position"
+
+  - id: ETH
+    name: "Ethereum"
+    ticker: "ETH"
+    category: crypto
+    liquidity: liquid
+    quantity: 15.0
+    cost_basis_usd: 2800
+    notes: "Smart contract infrastructure; staking yield"
+
+  - id: SOL
+    name: "Solana"
+    ticker: "SOL"
+    category: crypto
+    liquidity: liquid
+    quantity: 200.0
+    cost_basis_usd: 120
+    notes: "High-throughput L1; AI/DePIN ecosystem play"
+
+  # PRIVATE EQUITY — Semi-liquid
+  - id: CRYPTO_INFRA_EQUITY
+    name: "Crypto Infrastructure Company (Private)"
+    ticker: null
+    category: crypto_equity
+    liquidity: semi_liquid
+    quantity: 10000              # shares
+    cost_basis_usd: 8.50        # per share
+    lock_expiry: "2027-06-01"
+    notes: "Institutional crypto infrastructure; IPO candidate"
+
+  # PUBLIC EQUITY
+  - id: COIN
+    name: "Coinbase Global"
+    ticker: "COIN"
+    category: public_equity
+    liquidity: liquid
+    quantity: 50
+    cost_basis_usd: 180
+    notes: "Crypto-correlated public equity proxy"
+
+  # REAL ESTATE — Illiquid
+  - id: RE_PRIMARY
+    name: "Real Estate — Emerging Market City"
+    ticker: null
+    category: real_estate
+    liquidity: illiquid
+    quantity: 1
+    valuation_usd: 180000
+    last_valued: "2026-01-01"
+    notes: "India growth thesis; appreciating market"
+
+  # CASH & STABLES
+  - id: USDC
+    name: "USD Coin"
+    ticker: "USDC"
+    category: crypto
+    liquidity: liquid
+    quantity: 25000
+    cost_basis_usd: 1.0
+    notes: "Yield-bearing cash buffer; deployed in lending"
+
+  - id: CASH
+    name: "Cash (USD)"
+    ticker: null
+    category: cash
+    liquidity: liquid
+    quantity: 1
+    valuation_usd: 30000
+    notes: "Emergency buffer + dry powder"
+
+# ------------------------------------------------------------------------------
+# Risk Thresholds
+# ------------------------------------------------------------------------------
+thresholds:
+  max_single_asset_pct: 0.35
+  max_crypto_correlated_pct: 0.70
+  max_illiquid_pct: 0.50
+  min_cash_buffer_usd: 40000        # 6 months expenses
+  btc_drawdown_stress_pct: -0.60
+  eth_drawdown_stress_pct: -0.75
+  monthly_burn_usd: 6500            # Living expenses
+
+# ------------------------------------------------------------------------------
+# Wealth Goals (drives report framing)
+# ------------------------------------------------------------------------------
+wealth_goals:
+  target_net_worth_5yr_usd: 3000000
+  target_net_worth_10yr_usd: 10000000
+  startup_investing_threshold_usd: 2000000   # When to start deploying as angel
+  target_check_size_usd: 150000
+  primary_liquidity_event: "Private equity IPO/acquisition"
+  estimated_event_window: "2027-2029"
+
+# ------------------------------------------------------------------------------
+# Thematic Bets
+# ------------------------------------------------------------------------------
+thematic_bets:
+  themes:
+    crypto_custody_infra:
+      name: "Crypto Custody Infrastructure"
+      conviction: high
+      horizon: "3-5yr"
+      linked_positions: [CRYPTO_INFRA_EQUITY]
+      signal_keywords:
+        - "institutional crypto"
+        - "crypto custody"
+        - "digital asset regulation"
+        - "ETF approval"
+        - "crypto IPO"
+      bull_catalysts:
+        - "Regulatory clarity for digital assets"
+        - "Institutional AUM growth in crypto"
+        - "IPO/acquisition of major custodian"
+      bear_risks:
+        - "Prolonged crypto bear market"
+        - "Regulatory crackdown on custodians"
+
+    ai_buildout:
+      name: "AI Infrastructure Buildout"
+      conviction: high
+      horizon: "2-4yr"
+      linked_positions: [SOL]
+      signal_keywords:
+        - "AI capex"
+        - "data center"
+        - "GPU shortage"
+        - "AI energy demand"
+        - "hyperscaler"
+      bull_catalysts:
+        - "Continued hyperscaler AI capex"
+        - "AI agent adoption at enterprise scale"
+      bear_risks:
+        - "AI investment bubble correction"
+        - "Regulatory constraints on AI"
+
+    nuclear_renaissance:
+      name: "Nuclear Energy Renaissance"
+      conviction: medium
+      horizon: "3-7yr"
+      linked_positions: []
+      signal_keywords:
+        - "nuclear energy"
+        - "SMR"
+        - "uranium"
+        - "data center power"
+      bull_catalysts:
+        - "Tech companies signing nuclear PPAs"
+        - "SMR regulatory approval"
+
+    india_growth:
+      name: "India Growth"
+      conviction: medium
+      horizon: "5-10yr"
+      linked_positions: [RE_PRIMARY]
+      signal_keywords:
+        - "India GDP"
+        - "India real estate"
+        - "India tech sector"
+        - "INR"
+      bull_catalysts:
+        - "India becoming #3 global economy"
+        - "Real estate appreciation in tech hubs"
+
+# ------------------------------------------------------------------------------
+# Hedging Policy
+# ------------------------------------------------------------------------------
+hedging:
+  enabled: true
+  instrument: "BTC_PUT_OPTIONS"
+  target_coverage_pct: 0.20
+  max_premium_pct_of_portfolio: 0.02
+  rebalance_trigger_pct: 0.05
+
+# ------------------------------------------------------------------------------
+# Yield Strategy
+# ------------------------------------------------------------------------------
+yield:
+  stablecoin_targets:
+    min_apy: 0.05
+    max_protocol_risk: "medium"
+    preferred_protocols:
+      - "Aave"
+      - "Morpho"
+      - "Institutional Lending"
+  defi_exposure_max_pct: 0.05
+
+# ------------------------------------------------------------------------------
+# Monitoring
+# ------------------------------------------------------------------------------
+monitoring:
+  daily_digest: true
+  weekly_report: true
+  anomaly_alerts: true
+  macro_indicators:
+    - DFF
+    - T10Y2Y
+    - DTWEXBGS
+    - CPIAUCSL
+    - UNRATE
+    - VIXCLS
