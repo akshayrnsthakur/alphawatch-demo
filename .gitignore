@@ -1,0 +1,44 @@
+# Secrets
+.env
+*.env
+.env.*
+*.key
+*.pem
+*.secret
+*credentials*
+*token*
+
+# T4 — never commit. Akshay-local data only. Claude refuses to read by name pattern.
+# Particularly important for this repo: it is PUBLIC. T4 leaks here are externally visible.
+# Matches any file containing `.local.`, `.private.`, `.real.`, or `.map.local.` in name.
+*.local.*
+*.private.*
+*.real.*
+*.map.local.*
+# Belt-and-suspenders explicit names (covers leading-dot edge cases)
+.thinking.local.md
+.balance-sheet.local.md
+.bitgo-equity.local.md
+.portfolio-map.local.yaml
+.wealth.local.md
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+dist/
+*.egg-info/
+
+# Virtual env
+venv/
+.venv/
+env/
+
+# macOS
+.DS_Store
+
+# Editors
+.idea/
+.vscode/
+*.swp
